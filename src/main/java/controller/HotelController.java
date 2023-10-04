@@ -7,7 +7,7 @@ public class HotelController {
 
 
     //Skal vi have et .check?
-
+    @Override
     public Handler getAllHotels = ctx -> {
         ctx.json(HotelDAO.getAllHotels());
     };

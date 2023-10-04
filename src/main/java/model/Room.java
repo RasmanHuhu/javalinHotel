@@ -27,8 +27,13 @@ public class Room {
     @Column(name = "description", nullable = false)
     private String description;
 
-    public Room(String roomNumber, String description) {
+    public Room(String roomNumber, int hotelId, int price, String description) {
         this.roomNumber = roomNumber;
+        this.hotelId = hotelId;
+        this.price = price;
         this.description = description;
     }
+
+    // Implement functionality to convert between DTOs and Entities
+    // json -> gson?
 }

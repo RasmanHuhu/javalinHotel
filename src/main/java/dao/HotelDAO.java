@@ -62,8 +62,9 @@ public class HotelDAO implements IDAO<Hotel> {
         }
 
         //Dem her insisterer INtellij at jeg importer?:
-    //Samme sker i RoomDAO, men jeg har jo implementeret
+        //Samme sker i RoomDAO, men jeg har jo implementeret ovenstående. Er det fordi jeg har lavet en interface i stedet for en abstract class? (HAHAHA)
 
+    /*
     @Override
     public void createRoom(Room room) {
 
@@ -84,3 +85,6 @@ public class HotelDAO implements IDAO<Hotel> {
         return null;
     }
 }
+
+*/
+

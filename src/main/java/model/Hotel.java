@@ -26,9 +26,13 @@ public class Hotel {
     @Column(name = "description", nullable = false)
     private String description;
 
-    public Hotel(String name, String description) {
+    public Hotel(String name, String address, int rooms, String description) {
         this.name = name;
+        this.address = address;
+        this.rooms = rooms;
         this.description = description;
     }
+}
 
+    // Implement functionality to convert between DTOs and Entities
 }
