@@ -10,7 +10,7 @@ public abstract class IDAO {
     void Create(Entity entity) {
     }
 
-    Entitet GetById(int id) {
+    Entity GetById(int id) {
         return null;
     }
 
