@@ -25,7 +25,7 @@ public class Main {
 
         //Two resources - Hotel and Room?
 
-        //Vi skal huske at tilføje error handling (app.error(404)?)
+        //Vi skal huske at tilføje error handling (app.error(404)? -> ApiException klassen)
     }
 
     //Vend tilbage, for crud navnene passer ikke
@@ -62,7 +62,7 @@ public class Main {
                 //Delete room
                 delete("/{id}", RoomController.deleteRoom());
             });
-            }
-    }
+
+    };
 }
 }
