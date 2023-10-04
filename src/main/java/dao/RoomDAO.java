@@ -15,6 +15,7 @@ public abstract class RoomDAO extends IDAO {
 
     private List<Room> rooms = new ArrayList<>();
 
+    //Singleton pattern - men har vi brug for den i den her? For den klager da den er abstract
     public static RoomDAO getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;

@@ -12,9 +12,11 @@ public abstract class HotelDAO extends IDAO {
     private static EntityManagerFactory emf;
     private static HotelDAO instance;
 
-    //Arraylist med hoteller
+
     private List<Hotel> hotels = new ArrayList<>();
 
+
+    //Singleton pattern - men har vi brug for den i den her? For den klager da den er abstract
     public static HotelDAO getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
