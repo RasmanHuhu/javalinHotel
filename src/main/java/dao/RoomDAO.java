@@ -8,7 +8,7 @@ import model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoomDAO extends IDAO {
+public abstract class RoomDAO extends IDAO {
 
     private static EntityManagerFactory emf;
     private static RoomDAO instance;

@@ -7,7 +7,7 @@ import model.Room;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HotelDAO implements IDAO<Hotel> {
+public abstract class HotelDAO extends IDAO {
 
     private static EntityManagerFactory emf;
     private static HotelDAO instance;
@@ -26,6 +26,7 @@ public class HotelDAO implements IDAO<Hotel> {
 
     @Override
     public void create(Hotel entity) {
+
         hotels.add(entity);
     }
 
@@ -37,6 +38,7 @@ public class HotelDAO implements IDAO<Hotel> {
 
     @Override
     public List<Hotel> getAll() {
+
         return hotels;
     }
 
@@ -52,17 +54,17 @@ public class HotelDAO implements IDAO<Hotel> {
         }
     }
 
-        @Override
-        public void delete(int id){
-            // fjerner hotellet fra databasen
-            Hotel hotelToDelete = getById(id);
-            if (hotelToDelete != null) {
-                hotels.remove(hotelToDelete);
-            }
+    @Override
+    public void delete(int id) {
+        // fjerner hotellet fra databasen
+        Hotel hotelToDelete = getById(id);
+        if (hotelToDelete != null) {
+            hotels.remove(hotelToDelete);
         }
+    }
 
-        //Dem her insisterer INtellij at jeg importer?:
-        //Samme sker i RoomDAO, men jeg har jo implementeret ovenstående. Er det fordi jeg har lavet en interface i stedet for en abstract class? (HAHAHA)
+//Dem her insisterer INtellij at jeg importer?:
+//Samme sker i RoomDAO, men jeg har jo implementeret ovenstående. Er det fordi jeg har lavet en interface i stedet for en abstract class? (HAHAHA)
 
     /*
     @Override

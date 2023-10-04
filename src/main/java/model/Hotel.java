@@ -32,7 +32,7 @@ public class Hotel {
         this.rooms = rooms;
         this.description = description;
     }
-}
-
     // Implement functionality to convert between DTOs and Entities
 }
+
+

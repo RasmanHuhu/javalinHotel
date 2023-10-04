@@ -7,7 +7,7 @@ public class RoomController {
 
     public Handler getRoomById = ctx -> {
         int id = Integer.parseInt(ctx.pathParam("id"));
-        Room room = RoomDAO.getRoomById(id);
+        Room room = Room.getRoomById(id);
         ctx.json(room);
     };
 }
