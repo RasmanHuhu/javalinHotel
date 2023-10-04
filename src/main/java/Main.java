@@ -4,8 +4,8 @@ import model.Hotel;
 import model.Room;
 
 public class Main {
-    protected static EntityManagerFactory emf;
 
+    protected static EntityManagerFactory emf;
 
     public static void main(String[] args) {
 

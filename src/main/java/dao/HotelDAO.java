@@ -1,17 +1,24 @@
 package dao;
 
-import dao.IDAO;
 import jakarta.persistence.EntityManagerFactory;
 import model.Hotel;
+import model.Room;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class HotelDAO extends IDAO {
+public class HotelDAO implements IDAO<Hotel> {
+
+    private static EntityManagerFactory emf;
+    private static HotelDAO instance;
+
+    //Arraylist med hoteller
+    private List<Hotel> hotels = new ArrayList<>();
 
     public static HotelDAO getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new PersonDAOImpl();
+            instance = new HotelDAO();
 
         }
         return instance;
@@ -24,6 +31,7 @@ public class HotelDAO extends IDAO {
 
     @Override
     public Hotel getById(int id) {
+
         return hotels.stream().filter(h -> h.getId() == id).findFirst().orElse(null);
     }
 
@@ -40,16 +48,39 @@ public class HotelDAO extends IDAO {
         if (existingHotel != null) {
             existingHotel.setName(entity.getName());
             existingHotel.setDescription(entity.getDescription());
-            // Update other properties as needed.
+
         }
     }
 
         @Override
-        public void delete ( int id){
+        public void delete(int id){
             // fjerner hotellet fra databasen
             Hotel hotelToDelete = getById(id);
             if (hotelToDelete != null) {
                 hotels.remove(hotelToDelete);
             }
         }
+
+        //Dem her insisterer INtellij at jeg importer?:
+    //Samme sker i RoomDAO, men jeg har jo implementeret
+
+    @Override
+    public void createRoom(Room room) {
+
     }
+
+    @Override
+    public Room updateRoom(Room room) {
+        return null;
+    }
+
+    @Override
+    public void deleteRoom(Room room) {
+
+    }
+
+    @Override
+    public List<Room> findRoom(Room room) {
+        return null;
+    }
+}

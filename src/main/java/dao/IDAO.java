@@ -14,14 +14,14 @@ public abstract class IDAO {
         return null;
     }
 
-    void Update(Entitet entitet) {
+    void Update(Entity entity) {
     }
 
     public abstract void create(Hotel entity);
 
     public abstract Hotel getById(int id);
 
-    List<Entity> getAll() {
+    List<Hotel> getAll() {
         return null;
     }
 
@@ -34,9 +34,15 @@ public abstract class IDAO {
 
     public abstract void createRoom(Room room);
 
+    public abstract void create(Room room);
+
     public abstract Room updateRoom(Room room);
 
+    public abstract Room update(Room room);
+
     public abstract void deleteRoom(Room room);
+
+    public abstract void delete(Room room);
 
     public abstract List<Room> findRoom(Room room);
 }

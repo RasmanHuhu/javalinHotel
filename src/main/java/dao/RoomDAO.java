@@ -1,6 +1,7 @@
 package dao;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
 import model.Room;
 
@@ -9,18 +10,21 @@ import java.util.List;
 
 public class RoomDAO extends IDAO {
 
+    private static EntityManagerFactory emf;
+    private static RoomDAO instance;
+
     private List<Room> rooms = new ArrayList<>();
 
-    public static IDAO getInstance(EntityManagerFactory _emf) {
+    public static RoomDAO getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new HobbyDAOImpl();
+            instance = new RoomDAO();
         }
         return instance;
     }
 
     @Override
-    public void createRoom(Room room) {
+    public void create(Room room) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.persist(room);
@@ -29,7 +33,7 @@ public class RoomDAO extends IDAO {
     }
 
     @Override
-    public Room updateRoom(Room room) {
+    public Room update(Room room) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.merge(room);
@@ -39,7 +43,7 @@ public class RoomDAO extends IDAO {
     }
 
     @Override
-    public void deleteRoom(Room room) {
+    public void delete(Room room) {
         try (EntityManager em = emf.createEntityManager()) {
             em.getTransaction().begin();
             em.remove(room);
@@ -55,4 +59,6 @@ public class RoomDAO extends IDAO {
             return typedQuery.getResultList();
         }
     }
+
+
 }
