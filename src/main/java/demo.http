@@ -3,7 +3,7 @@ GET http://localhost:7007/hotel/
 
 
 ###
-GET http://localhost:7007/hotel/1
+GET http://localhost:7007/hotel/12
 Accept: application/json
 Content-Type: application/json
 

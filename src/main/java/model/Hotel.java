@@ -1,5 +1,6 @@
 package model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -23,7 +24,8 @@ public class Hotel {
     private String address;
 
    // @Column(name = "rooms", nullable = true)
-    @OneToMany(mappedBy = "hotel")
+    @OneToMany(mappedBy = "hotel", fetch = FetchType.EAGER)
+    @JsonManagedReference
     private List<Room> rooms;
 
     @Column(name = "description", nullable = false)

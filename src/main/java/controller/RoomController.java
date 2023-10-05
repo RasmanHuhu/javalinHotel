@@ -13,8 +13,8 @@ import model.Room;
 import model.RoomDTO;
 
 public class RoomController {
-    private Gson gson;
-    private RoomDAO roomDAO;
+    private final Gson gson;
+    private final RoomDAO roomDAO;
     private HotelDAO hotelDAO;
 
 
