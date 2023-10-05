@@ -3,6 +3,8 @@ package model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,13 +22,14 @@ public class Hotel {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "rooms", nullable = false)
-    private int rooms;
+    @Column(name = "rooms", nullable = true)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.PERSIST)
+    private List<Room> rooms;
 
     @Column(name = "description", nullable = false)
     private String description;
 
-    public Hotel(String name, String address, int rooms, String description) {
+    public Hotel(String name, String address, List<Room> rooms, String description) {
         this.name = name;
         this.address = address;
         this.rooms = rooms;

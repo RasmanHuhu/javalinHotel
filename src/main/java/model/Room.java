@@ -4,8 +4,10 @@ package model;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
+@Setter
 @NoArgsConstructor
 @Entity
 public class Room {
@@ -18,22 +20,24 @@ public class Room {
     @Column(name = "room_number", nullable = false)
     private String roomNumber;
 
-    @Column(name = "hotel_id", nullable = false)
-    private int hotelId;
+    @Column(name = "hotel", nullable = false)
+    @ManyToOne(cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "hotel_id")
+    private Hotel hotel;
 
     @Column(name = "price", nullable = false)
-    private int price;
+    private float price;
 
     @Column(name = "description", nullable = false)
     private String description;
 
-    public Room(String roomNumber, int hotelId, int price, String description) {
+    public Room(String roomNumber, Hotel hotel, float price, String description) {
         this.roomNumber = roomNumber;
-        this.hotelId = hotelId;
+        this.hotel = hotel;
         this.price = price;
         this.description = description;
     }
+}
 
     // Implement functionality to convert between DTOs and Entities
     // json -> gson?
-}

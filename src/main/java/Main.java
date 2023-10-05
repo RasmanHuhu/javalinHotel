@@ -5,8 +5,6 @@ import jakarta.persistence.EntityManagerFactory;
 import model.Hotel;
 import model.Room;
 
-import javax.xml.stream.events.EndDocument;
-
 import static io.javalin.apibuilder.ApiBuilder.path;
 import static io.javalin.apibuilder.ApiBuilder.post;
 
@@ -22,10 +20,9 @@ public class Main {
         Javalin app = Javalin.create().start(7007);
         app.routes(getHotelRoutes());
         app.routes(getRoomRoutes());
-
         //Two resources - Hotel and Room?
-
         //Vi skal huske at tilføje error handling (app.error(404)? -> ApiException klassen)
+
     }
 
     //Vend tilbage, for crud navnene passer ikke
@@ -35,7 +32,7 @@ public class Main {
                 //Get all hotels
                 get("/", HotelController.getAllHotels());
                 //Get hotel by id
-                get("/:id", HotelController.getHotelById());
+                get("/{id}", HotelController.getHotelById());
                 //Create hotel
                 post("/", HotelController.createHotel());
                 //Update hotel

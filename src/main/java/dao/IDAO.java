@@ -1,48 +1,17 @@
 package dao;
 
-import model.Hotel;
-import model.Room;
-
 import java.util.List;
 
-public abstract class IDAO {
+public interface IDAO<T> {
 
-    void Create(Entity entity) {
-    }
 
-    Entity GetById(int id) {
-        return null;
-    }
+    void create(T obj);
 
-    void Update(Entity entity) {
-    }
+    void update(T obj);
 
-    public abstract void create(Hotel entity);
+    void delete(T obj);
 
-    public abstract Hotel getById(int id);
+    T findById(int id);
 
-    List<Hotel> getAll() {
-        return null;
-    }
-
-    void Delete(int id) {
-    }
-
-    public abstract void update(Hotel entity);
-
-    public abstract void delete(int id);
-
-    public abstract void createRoom(Room room);
-
-    public abstract void create(Room room);
-
-    public abstract Room updateRoom(Room room);
-
-    public abstract Room update(Room room);
-
-    public abstract void deleteRoom(Room room);
-
-    public abstract void delete(Room room);
-
-    public abstract List<Room> findRoom(Room room);
+    List<T> getAll();
 }

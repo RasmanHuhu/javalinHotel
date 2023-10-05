@@ -1,94 +1,44 @@
 package dao;
 
+import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.TypedQuery;
 import model.Hotel;
 import model.Room;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public abstract class HotelDAO extends IDAO {
+public class HotelDAO extends ADAO<Hotel> {
 
     private static EntityManagerFactory emf;
     private static HotelDAO instance;
 
 
-    private List<Hotel> hotels = new ArrayList<>();
+    public HotelDAO(Class<Hotel> entityClass) {
+        super(entityClass);
+        queryFindAll = ("SELECT h FROM Hotel h");
+    }
 
 
-    //Singleton pattern - men har vi brug for den i den her? For den klager da den er abstract
+    //Singleton pattern -
     public static HotelDAO getInstance(EntityManagerFactory _emf) {
         if (instance == null) {
             emf = _emf;
-            instance = new HotelDAO();
+            instance = new HotelDAO(Hotel.class);
 
         }
         return instance;
     }
 
-    @Override
-    public void create(Hotel entity) {
-
-        hotels.add(entity);
-    }
-
-    @Override
-    public Hotel getById(int id) {
-
-        return hotels.stream().filter(h -> h.getId() == id).findFirst().orElse(null);
-    }
-
-    @Override
-    public List<Hotel> getAll() {
-
-        return hotels;
-    }
-
-    @Override
-    public void update(Hotel entity) {
-
-        //Opdater hotellet i databasen
-        Hotel existingHotel = getById(entity.getId());
-        if (existingHotel != null) {
-            existingHotel.setName(entity.getName());
-            existingHotel.setDescription(entity.getDescription());
-
+    public List<Room> findAllRooms(int hotelId) {
+        try (EntityManager em = emf.createEntityManager()) {
+            String rooms = "SELECT r FROM Room r WHERE r.hotel.id = :hotelId";
+            TypedQuery<Room> query = em.createQuery(rooms, Room.class);
+            query.setParameter("hotelId", hotelId);
+            return query.getResultList();
         }
     }
-
-    @Override
-    public void delete(int id) {
-        // fjerner hotellet fra databasen
-        Hotel hotelToDelete = getById(id);
-        if (hotelToDelete != null) {
-            hotels.remove(hotelToDelete);
-        }
-    }
-
-//Dem her insisterer INtellij at jeg importer?:
-//Samme sker i RoomDAO, men jeg har jo implementeret ovenstående. Er det fordi jeg har lavet en interface i stedet for en abstract class? (HAHAHA)
-
-    /*
-    @Override
-    public void createRoom(Room room) {
-
-    }
-
-    @Override
-    public Room updateRoom(Room room) {
-        return null;
-    }
-
-    @Override
-    public void deleteRoom(Room room) {
-
-    }
-
-    @Override
-    public List<Room> findRoom(Room room) {
-        return null;
+    public static EntityManagerFactory getEmf() {
+        return emf;
     }
 }
-
-*/
-
