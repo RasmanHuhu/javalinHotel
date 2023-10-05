@@ -28,7 +28,7 @@ public class HotelController {
         };
     }
 
-    public Handler getHotelsById() {
+    public Handler getHotelById() {
         return ctx -> {
             int id = Integer.parseInt(ctx.pathParam("id"));
             ctx.json(gson.toJson(hotelDAO.findById(id)));
@@ -44,7 +44,7 @@ public class HotelController {
 
     public Handler createHotel() {
         return ctx -> {
-            Hotel hotel = ctx.bodyAsClass(HotelDTO.class).convertToEntity(HotelDAO.getEmf());
+            Hotel hotel = gson.fromJson(ctx.body(), HotelDTO.class).convertToEntity(HotelDAO.getEmf());
             hotelDAO.create(hotel);
             ctx.status(201);
         };
@@ -53,7 +53,7 @@ public class HotelController {
     public Handler updateHotel() {
         return ctx -> {
             int id = Integer.parseInt(ctx.pathParam("id"));
-            Hotel hotel = ctx.bodyAsClass(HotelDTO.class).convertToEntity(HotelDAO.getEmf());
+            Hotel hotel = gson.fromJson(ctx.body(), HotelDTO.class).convertToEntity(HotelDAO.getEmf());
             hotel.setId(id);
             hotelDAO.update(hotel);
             ctx.status(204);

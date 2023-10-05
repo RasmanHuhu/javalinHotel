@@ -10,7 +10,6 @@ import java.util.List;
 
 public class HotelDAO extends ADAO<Hotel> {
 
-    private static EntityManagerFactory emf;
     private static HotelDAO instance;
 
 

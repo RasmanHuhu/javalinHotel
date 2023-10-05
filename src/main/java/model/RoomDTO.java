@@ -8,7 +8,7 @@ public class RoomDTO {
 
     private int id;
 
-    private String roomNumber;
+    private int roomNumber;
 
     private int hotelId;
 

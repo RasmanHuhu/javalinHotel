@@ -1,0 +1,42 @@
+GET http://localhost:7007/hotel/
+
+
+
+###
+GET http://localhost:7007/hotel/1
+Accept: application/json
+Content-Type: application/json
+
+
+###
+POST http://localhost:7007/hotel/
+Content-Type: application/json
+
+{
+  "id": 5,
+  "name": "Zino's Palace",
+     "address": "Hejvej 22",
+     "description": "The best hotel in the world"
+}
+
+###
+PUT http://localhost:7007/person/2
+
+{
+  "name": "Jimmi",
+  "age": 19
+
+}
+
+
+###
+POST http://localhost:7007/room/
+Content-Type: application/json
+
+{
+  "id": 1,
+  "roomNumber": 5,
+  "hotelId": 3,
+  "price": 2999,
+    "description": "The best room in the world"
+}

@@ -1,6 +1,5 @@
 package model;
 
-
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +17,9 @@ public class Room {
     private int id;
 
     @Column(name = "room_number", nullable = false)
-    private String roomNumber;
+    private int roomNumber;
 
-    @Column(name = "hotel", nullable = false)
+
     @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
@@ -31,7 +30,7 @@ public class Room {
     @Column(name = "description", nullable = false)
     private String description;
 
-    public Room(String roomNumber, Hotel hotel, float price, String description) {
+    public Room(int roomNumber, Hotel hotel, float price, String description) {
         this.roomNumber = roomNumber;
         this.hotel = hotel;
         this.price = price;

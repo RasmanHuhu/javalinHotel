@@ -5,7 +5,7 @@ import model.Room;
 
 public class RoomDAO extends ADAO<Room> {
 
-    private static EntityManagerFactory emf;
+
     private static RoomDAO instance;
 
 
@@ -23,5 +23,7 @@ public class RoomDAO extends ADAO<Room> {
         return instance;
     }
 
-
+    public static EntityManagerFactory getEmf() {
+        return emf;
+    }
 }

@@ -3,6 +3,7 @@ package dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.TypedQuery;
+import model.Room;
 
 import java.util.List;
 
@@ -11,10 +12,13 @@ import java.util.List;
 
 public abstract class ADAO<T> implements IDAO<T> {
 
-    private static EntityManagerFactory emf;
+    protected static EntityManagerFactory emf;
     final Class<T> entityClass;
 
     protected String queryFindAll;
+
+
+
 
     @Override
     public void create(T obj) {

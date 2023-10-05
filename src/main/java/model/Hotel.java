@@ -23,7 +23,7 @@ public class Hotel {
     private String address;
 
     @Column(name = "rooms", nullable = true)
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
 
     @Column(name = "description", nullable = false)

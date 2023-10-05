@@ -1,12 +1,14 @@
 import config.HibernateConfig;
+import controller.HotelController;
+import controller.RoomController;
 import io.javalin.Javalin;
 import io.javalin.apibuilder.EndpointGroup;
 import jakarta.persistence.EntityManagerFactory;
 import model.Hotel;
 import model.Room;
 
-import static io.javalin.apibuilder.ApiBuilder.path;
-import static io.javalin.apibuilder.ApiBuilder.post;
+import static io.javalin.apibuilder.ApiBuilder.*;
+
 
 public class Main {
 
@@ -27,18 +29,21 @@ public class Main {
 
     //Vend tilbage, for crud navnene passer ikke
     private static EndpointGroup getHotelRoutes() {
+        HotelController hotelController = new HotelController(emf);
         return () -> {
             path("/hotel", () -> {
                 //Get all hotels
-                get("/", HotelController.getAllHotels());
+                get("/", hotelController.getAllHotels());
                 //Get hotel by id
-                get("/{id}", HotelController.getHotelById());
+                get("/{id}", hotelController.getHotelById());
+                //Get rooms by hotel id
+                get("/{id}/rooms", hotelController.getRoomsById());
                 //Create hotel
-                post("/", HotelController.createHotel());
+                post("/", hotelController.createHotel());
                 //Update hotel
-                put("/{id}", HotelController.updateHotel());
+                put("/{id}", hotelController.updateHotel());
                 //Delete hotel
-                delete("/{id}", HotelController.deleteHotel());
+                delete("/{id}", hotelController.deleteHotel());
             });
 
         };
@@ -46,20 +51,21 @@ public class Main {
 
     //Vend tilbage, for crud navnene passer ikke
     private static EndpointGroup getRoomRoutes() {
+        RoomController roomController = new RoomController(emf);
         return () -> {
-            path("/hotel/room", () -> {
+            path("/room", () -> {
                 //Get all rooms
-                get("/", RoomController.getAllRooms());
+                get("/", roomController.getAllRooms());
                 //Get room by id
-                get("/:id", RoomController.getRoomById());
+                get("/{id}", roomController.getRoomById());
                 //Create room
-                post("/", RoomController.createRoom());
+                post("/", roomController.createRoom());
                 //Update room
-                put("/{id}", RoomController.updateRoom());
+                put("/{id}", roomController.updateRoom());
                 //Delete room
-                delete("/{id}", RoomController.deleteRoom());
+                delete("/{id}", roomController.deleteRoom());
             });
 
-    };
-}
+        };
+    }
 }
