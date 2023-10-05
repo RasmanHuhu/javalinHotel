@@ -22,7 +22,7 @@ public class Hotel {
     @Column(name = "address", nullable = false)
     private String address;
 
-    @Column(name = "rooms", nullable = true)
+   // @Column(name = "rooms", nullable = true)
     @OneToMany(mappedBy = "hotel")
     private List<Room> rooms;
 

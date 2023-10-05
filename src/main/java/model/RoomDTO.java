@@ -3,7 +3,11 @@ package model;
 import dao.HotelDAO;
 import dao.RoomDAO;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
+@Getter
+@Setter
 public class RoomDTO {
 
     private int id;
@@ -21,7 +25,8 @@ public class RoomDTO {
     public Room convertToEntity(EntityManagerFactory emf) {
         RoomDAO roomDAO = RoomDAO.getInstance(emf);
         HotelDAO hotelDAO = HotelDAO.getInstance(emf);
-        Hotel hotel = hotelDAO.findById(this.id);
+
+        Hotel hotel = hotelDAO.findById(this.hotelId);
         if (hotel == null) {
             throw new IllegalArgumentException("Hotel not found");
         }

@@ -13,10 +13,10 @@ POST http://localhost:7007/hotel/
 Content-Type: application/json
 
 {
-  "id": 5,
-  "name": "Zino's Palace",
-     "address": "Hejvej 22",
-     "description": "The best hotel in the world"
+    "id": 11,
+  "name": "Rasmussi's Palace",
+     "address": "Minvej 22",
+     "description": "The worst hotel in the world"
 }
 
 ###
@@ -34,9 +34,9 @@ POST http://localhost:7007/room/
 Content-Type: application/json
 
 {
-  "id": 1,
-  "roomNumber": 5,
-  "hotelId": 3,
+  "id": 11,
+  "roomNumber": 22,
+  "hotelId": 6,
   "price": 2999,
     "description": "The best room in the world"
 }
